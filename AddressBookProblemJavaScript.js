@@ -93,18 +93,46 @@ class AddressBook
     }
     
 }
-try
-{
-//Creating object for class Address book with parameters for constructor
-let addressBookObject= new AddressBook("Vishal","Garg","Barwala","Hisar","Haryana","125 121",8570934858,"vishal.garg@capgemini.com");
-//creating array and pushing address book object inside array
 let addressBookArray= new Array();
-addressBookArray.push(addressBookObject);
-addressBookArray.push(new AddressBook("Mahak","Singla","Sector14","Hisar","Haryana",125001,9595959595,"mahak.singla@gmail.com"));
-addressBookArray.push(new AddressBook("Darpan","Singhal","Adampur","Hisar","Haryana","136 119","7895432343","darpan.singhal@exl.com"))
-//console.log(addressBookObject.toString());
-//printing all the details pushed in array
-addressBookArray.forEach(contact=>console.log(contact.toString()));
+
+prompt= require('readline-sync');
+while(true)
+{
+    try
+    {
+     let firstName= prompt.question("Please enter your firstName: ");
+     if(firstName=="")
+      break;
+     let lastName= prompt.question("Please enter your lastName: ");
+     let address= prompt.question("Please enter your Address: ");
+     let city= prompt.question("Please enter your city: ");
+     let state= prompt.question("Please enter your state: ");
+     let zip= prompt.question("Please enter your zip: ");
+     let phoneNumber= prompt.question("Please enter your phonenumber: ");
+     let email = prompt.question("please enter your email: ");
+     let addressBook= new AddressBook(firstName,lastName,address,city,state,zip,phoneNumber,email);
+     addressBookArray.push(addressBook);
+     console.log("\nDetails entered successfully, please enter first name to add more details else press enter");
+    }
+    catch(e)
+     {
+        console.error(e);
+        console.log("Please enter input again, values entered is not in correct format");
+     }
+}  
+
+try
+{ 
+    //Creating object for class Address book with parameters for constructor
+    let addressBookObject= new AddressBook("Vishal","Garg","Barwala","Hisar","Haryana","125 121",8570934858,"vishal.garg@capgemini.com");
+    //creating array and pushing address book object inside array
+    addressBookArray.push(addressBookObject);
+    addressBookArray.push(new AddressBook("Mahak","Singla","Sector14","Hisar","Haryana",125001,9595959595,"mahak.singla@gmail.com"));
+    addressBookArray.push(new AddressBook("Darpan","Singhal","Adampur","Hisar","Haryana","136 119","7895432343","darpan.singhal@exl.com"))
+    //console.log(addressBookObject.toString());
+    //printing all the details pushed in array
+    console.log("\nPrinting Address book array\n")
+    addressBookArray.forEach(contact=>console.log(contact.toString()));
 }
 catch(e)
 {
