@@ -96,8 +96,15 @@ class AddressBook
 try
 {
 //Creating object for class Address book with parameters for constructor
-let addressBookObject= new AddressBook("Vishal","Garg","Barwala","Hisar","Haryana","125 121","8570934858","vishal.garg@capgemini.com");
-console.log(addressBookObject.toString());
+let addressBookObject= new AddressBook("Vishal","Garg","Barwala","Hisar","Haryana","125 121",8570934858,"vishal.garg@capgemini.com");
+//creating array and pushing address book object inside array
+let addressBookArray= new Array();
+addressBookArray.push(addressBookObject);
+addressBookArray.push(new AddressBook("Mahak","Singla","Sector14","Hisar","Haryana",125001,9595959595,"mahak.singla@gmail.com"));
+addressBookArray.push(new AddressBook("Darpan","Singhal","Adampur","Hisar","Haryana","136 119","7895432343","darpan.singhal@exl.com"))
+//console.log(addressBookObject.toString());
+//printing all the details pushed in array
+addressBookArray.forEach(contact=>console.log(contact.toString()));
 }
 catch(e)
 {
