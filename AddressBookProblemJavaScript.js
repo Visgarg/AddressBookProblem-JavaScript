@@ -89,7 +89,7 @@ class AddressBook
     //defining method toString()
     toString()
     {
-        return "first Name: "+this.firstName+", last Name: "+this.lastName+", Address: "+ this.address+", City: "+ this.city+", State: "+this.state+", Zip: "+this.zip+", Phone Number: "+this.phoneNumber+", email: "+this.email; 
+        return "first Name: "+this.firstName+"\nlast Name: "+this.lastName+"\nAddress: "+ this.address+"\nCity: "+ this.city+"\nState: "+this.state+"\nZip: "+this.zip+"\nPhone Number: "+this.phoneNumber+"\nemail: "+this.email+"\n"; 
     }
     
 }
@@ -132,6 +132,10 @@ try
     //console.log(addressBookObject.toString());
     //printing all the details pushed in array
     console.log("\nPrinting Address book array\n")
+    addressBookArray.forEach(contact=>console.log(contact.toString()));
+    //Editing Details in the address book using filter and foreach
+    console.log("\nEditing the array\n")
+    addressBookArray.filter(contact=>contact.firstName=="Vishal"&& contact.city=="Hisar").forEach(contact=>{contact.lastName="Kumar"; contact.address="Mumbai"} );;
     addressBookArray.forEach(contact=>console.log(contact.toString()));
 }
 catch(e)
