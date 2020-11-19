@@ -159,3 +159,7 @@ catch(e)
  }
 console.log("Deleting Elements from array -2nd method\n");
 addressBookArray.forEach(contact=>console.log(contact.toString()));
+//UC6 finding out the size of array using reduce function
+let nameRegex= RegExp('^[A-Z]{1}[A-Za-z]{2,}$')
+let addressBookCount= addressBookArray.reduce((count,contact)=>count= count+1,0);
+console.log("UC6 Printing the count of address book contacts: "+addressBookCount);
