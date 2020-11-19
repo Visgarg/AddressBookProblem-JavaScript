@@ -1,4 +1,5 @@
 const { keyIn } = require('readline-sync');
+const { isPrimitive } = require('util');
 
 //defining new class Address book
 class AddressBook
@@ -220,4 +221,16 @@ for(let states of statesArray)
     console.log(states+"==>");
     //printing all the contact details for each state using foreach and filter
     console.log(addressBookArray.filter(contact=>contact.state==states).forEach(contact=>console.log(contact.toString())));
+}
+//UC10 Printing the count for each city or state
+console.log("\nPrinting count by city");
+for(let cities of citiesArray)
+{
+    console.log(cities+"=>"+(contacts=>contacts.city.includes(cities)).length);
+}
+//UC10 Printing the count for each city or state
+console.log("\nPrinting count by states");
+for(let states of statesArray)
+{
+    console.log(states+"=>"+(contacts=>contacts.state.includes(states)).length);
 }
