@@ -137,8 +137,25 @@ try
     console.log("\nEditing the array\n")
     addressBookArray.filter(contact=>contact.firstName=="Vishal"&& contact.city=="Hisar").forEach(contact=>{contact.lastName="Kumar"; contact.address="Mumbai"} );;
     addressBookArray.forEach(contact=>console.log(contact.toString()));
+   
 }
 catch(e)
 {
     console.error(e);
 }
+ //deleting details from the address book array 1st method
+ let filteredArray= addressBookArray.filter(contact=>contact.firstName!="Vishal" && contact.lastName!="Kumar");
+ console.log("\nDeleting Elements from array\n");
+ //console.log(deletedArray);
+ filteredArray.forEach(contact=>console.log(contact.toString()));
+ //deleting details from address book array 2nd method
+ for(let contact=0;contact<addressBookArray.length;contact++)
+ {
+     if(addressBookArray[contact].firstName=="Vishal" && addressBookArray[contact].lastName=="Kumar")
+     {
+         addressBookArray.splice(contact,1);
+     }
+
+ }
+console.log("Deleting Elements from array -2nd method\n");
+addressBookArray.forEach(contact=>console.log(contact.toString()));
