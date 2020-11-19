@@ -208,7 +208,7 @@ let citiesArray= new Array();
      //printing city
      console.log(cities+"==>");
      //printing all the contact details for each city using foreach and filter
-     console.log(addressBookArray.filter(contact=>contact.city==cities).forEach(contact=>console.log(contact.toString())));
+    addressBookArray.filter(contact=>contact.city==cities).forEach(contact=>console.log(contact.toString()));
  }
  //creating array of states, adding all states in one array
 let statesArray= new Array();
@@ -220,12 +220,13 @@ for(let states of statesArray)
     //printing state
     console.log(states+"==>");
     //printing all the contact details for each state using foreach and filter
-    console.log(addressBookArray.filter(contact=>contact.state==states).forEach(contact=>console.log(contact.toString())));
+    addressBookArray.filter(contact=>contact.state==states).forEach(contact=>console.log(contact.toString()));
 }
 //UC10 Printing the count for each city or state
 console.log("\nPrinting count by city");
 for(let cities of citiesArray)
 {
+    //gtting length of contacts for particular city
     console.log(cities+"=>"+(contacts=>contacts.city.includes(cities)).length);
 }
 //UC10 Printing the count for each city or state
@@ -233,4 +234,21 @@ console.log("\nPrinting count by states");
 for(let states of statesArray)
 {
     console.log(states+"=>"+(contacts=>contacts.state.includes(states)).length);
+}
+//UC11 sorting entries on the person name
+//creating personNames array which contain first names and last names of each individual in address book
+let personNames= new Array();
+addressBookArray.forEach(contact=>{
+    if(!personNames.includes(contact.firstName+" "+contact.lastName))
+    {
+    personNames.push(contact.firstName+" "+contact.lastName);
+    }
+});
+//sorting personNames array
+console.log(personNames.sort());
+console.log("\nPrinting contacts sorted by names");
+for(let person of personNames)
+{
+    //filtering contacts by checking if first name and last name include person from person names and printing each contact which is filtered.
+    addressBookArray.filter(contacts=>person.includes(contacts.firstName+" "+contacts.lastName)).forEach(contact=>console.log(contact.toString()));
 }
