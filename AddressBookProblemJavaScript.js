@@ -1,3 +1,5 @@
+const { keyIn } = require('readline-sync');
+
 //defining new class Address book
 class AddressBook
 {
@@ -94,6 +96,7 @@ class AddressBook
     
 }
 let addressBookArray= new Array();
+let cityMap= new Map();
 
 prompt= require('readline-sync');
 while(true)
@@ -116,6 +119,8 @@ while(true)
         throw "Details you are entering already exists";
     else
         addressBookArray.push(addressBook);
+        cityMap.push(addressBook.city,cityArray.push(addressBook));
+
      console.log("\nDetails entered successfully, please enter first name to add more details else press enter");
     }
     catch(e)
@@ -131,8 +136,12 @@ try
     let addressBookObject= new AddressBook("Vishal","Garg","Barwala","Hisar","Haryana","125 121",8570934858,"vishal.garg@capgemini.com");
     //creating array and pushing address book object inside array
     addressBookArray.push(addressBookObject);
-    addressBookArray.push(new AddressBook("Mahak","Singla","Sector14","Hisar","Haryana",125001,9595959595,"mahak.singla@gmail.com"));
-    addressBookArray.push(new AddressBook("Darpan","Singhal","Adampur","Hisar","Haryana","136 119","7895432343","darpan.singhal@exl.com"))
+    let addressBookObject1= new AddressBook("Mahak","Singla","Sector14","Hisar","Haryana",125001,9595959595,"mahak.singla@gmail.com")
+    addressBookArray.push(addressBookObject1);
+    //cityMap.set(addressBookObject1.city,cityArray.push(addressBookObject1));
+    let addressBookObject2= new AddressBook("Darpan","Singhal","Adampur","Jind","Haryana","136 119","7895432343","darpan.singhal@exl.com");
+    addressBookArray.push(addressBookObject2);
+    //cityMap.set(addressBookObject2.city,cityArray.push(addressBookObject2));
     //console.log(addressBookObject.toString());
     //printing all the details pushed in array
     console.log("\nPrinting Address book array\n")
@@ -163,8 +172,8 @@ catch(e)
  }
 console.log("Deleting Elements from array -2nd method\n");
 addressBookArray.forEach(contact=>console.log(contact.toString()));
+
 //UC6 finding out the size of array using reduce function
-let nameRegex= RegExp('^[A-Z]{1}[A-Za-z]{2,}$')
 let addressBookCount= addressBookArray.reduce((count,contact)=>count= count+1,0);
 console.log("UC6 Printing the count of address book contacts: "+addressBookCount);
 //UC8 ability to search person in particular city or state
@@ -172,3 +181,43 @@ console.log("\nUC8 Searcing for contacts in city Hisar\n")
 addressBookArray.filter(contact=>contact.city.includes("Hisar")).forEach(contact=>console.log(contact.toString()));
 //UC8 searching for a person in specific state
 addressBookArray.filter(contact=>contact.firstName.includes("Mahak")&& contact.state.includes("Haryana")).forEach(contact=>console.log("UC8 Searching for mahak in specific state Haryana:\n"+contact.toString()));
+//UC9 viewing contact details by city
+//debugger;
+/*let cityArray=new Array();
+for(let contacts of addressBookArray)
+{
+    if(!cityMap.keys.includes(contacts.city))
+    {
+         cityArray= new Array();
+        cityMap.set(contacts.city,cityArray.push(contacts));
+    }
+    else
+    {
+        cityMap.set(contacts.city,cityArray.push(contacts));
+    }
+}
+console.log(cityMap);*/
+//creating array of cities, adding all cities in one array
+let citiesArray= new Array();
+ addressBookArray.forEach(contact=>{if(!citiesArray.includes(contact.city)) {citiesArray.push(contact.city)}});
+ //iterating over each city and printing values for each city
+ console.log("\nUC9 viewing persons for each city\n");
+ for(let cities of citiesArray)
+ {
+     //printing city
+     console.log(cities+"==>");
+     //printing all the contact details for each city using foreach and filter
+     console.log(addressBookArray.filter(contact=>contact.city==cities).forEach(contact=>console.log(contact.toString())));
+ }
+ //creating array of states, adding all states in one array
+let statesArray= new Array();
+addressBookArray.forEach(contact=>{if(!statesArray.includes(contact.state)) {statesArray.push(contact.state)}});
+//iterating over each city and printing values for each state
+console.log("\nUC9 viewing persons for each city\n");
+for(let states of statesArray)
+{
+    //printing state
+    console.log(states+"==>");
+    //printing all the contact details for each state using foreach and filter
+    console.log(addressBookArray.filter(contact=>contact.state==states).forEach(contact=>console.log(contact.toString())));
+}
