@@ -167,3 +167,8 @@ addressBookArray.forEach(contact=>console.log(contact.toString()));
 let nameRegex= RegExp('^[A-Z]{1}[A-Za-z]{2,}$')
 let addressBookCount= addressBookArray.reduce((count,contact)=>count= count+1,0);
 console.log("UC6 Printing the count of address book contacts: "+addressBookCount);
+//UC8 ability to search person in particular city or state
+console.log("\nUC8 Searcing for contacts in city Hisar\n")
+addressBookArray.filter(contact=>contact.city.includes("Hisar")).forEach(contact=>console.log(contact.toString()));
+//UC8 searching for a person in specific state
+addressBookArray.filter(contact=>contact.firstName.includes("Mahak")&& contact.state.includes("Haryana")).forEach(contact=>console.log("UC8 Searching for mahak in specific state Haryana:\n"+contact.toString()));
